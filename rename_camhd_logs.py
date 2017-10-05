@@ -11,7 +11,7 @@
 # ./rename_log_files.py .
 #
 # This has been tested only on Python 3.6.2 but it should work on 2.7. This will
-# not work in any Windows environment. This prgram WILL NOT DO ANYTHING AS IS.
+# not work in any Windows environment. This program WILL NOT DO ANYTHING AS IS.
 # Uncomment the last line after testing this program to actually do a file copy.
 #
 # Tim Crone (tjcrone@gmail.com)
