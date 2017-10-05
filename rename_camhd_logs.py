@@ -30,29 +30,28 @@ root_directory = sys.argv[1]
 # loop though files in directory
 for root, dirs, files in os.walk(root_directory, topdown=True):
     for name in files:
-        if "log" in name:
-            if "camhda301_" in name:
-                # parse time
-                year = int("20%s" % name[10:12])
-                month = int(name[12:14])
-                day = int(name[14:16])
-                hour = int(name[17:19])
-                minute = int(name[19:21])
-                date = datetime.date(year, month, day)
+        if "log" in name and "camhda301_" in name:
+            # parse time
+            year = int("20%s" % name[10:12])
+            month = int(name[12:14])
+            day = int(name[14:16])
+            hour = int(name[17:19])
+            minute = int(name[19:21])
+            date = datetime.date(year, month, day)
 
-                # set timestamp based on date (add 'Z' before 2016/11/22)
-                if date > datetime.date(2016, 11, 21):
-                    timestamp = ('%i%02.0f%02.0fT%02.0f%02.0f00' % (year, month,
-                        day, hour, minute))
-                else:
-                    timestamp = ('%i%02.0f%02.0fT%02.0f%02.0f00Z' % (year, month,
-                        day, hour, minute))
+            # set timestamp based on date (add 'Z' before 2016/11/22)
+            if date > datetime.date(2016, 11, 21):
+                timestamp = ('%i%02.0f%02.0fT%02.0f%02.0f00' % (year, month,
+                    day, hour, minute))
+            else:
+                timestamp = ('%i%02.0f%02.0fT%02.0f%02.0f00Z' % (year, month,
+                    day, hour, minute))
 
-                # define new name
-                new_name = 'CAMHDA301-%s.log' % timestamp
+            # define new name
+            new_name = 'CAMHDA301-%s.log' % timestamp
 
-                # print what we are going to do
-                print('copying:\n%s to\n%s\n' % (os.path.join(root, name), os.path.join(root, new_name)))
+            # print what we are going to do
+            print('copying:\n%s to\n%s\n' % (os.path.join(root, name), os.path.join(root, new_name)))
 
-                # actually copy the file to a new name UNCOMMENT THIS LINE AFTER TESTING
-                #call(["cp", "-a", os.path.join(root, name), os.path.join(root, new_name)])
+            # actually copy the file to a new name UNCOMMENT THIS LINE AFTER TESTING
+            #call(["cp", "-a", os.path.join(root, name), os.path.join(root, new_name)])
